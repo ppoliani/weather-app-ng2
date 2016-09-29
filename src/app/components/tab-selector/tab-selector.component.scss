@@ -1,5 +1,10 @@
 $color: #14805e;
 
+.c-tab-selector {
+    display: flex;
+    flex-direction: row;
+}
+
 .c-tab-selector__header {
   height: 120px;
   background: $color;
