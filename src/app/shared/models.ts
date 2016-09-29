@@ -1,19 +1,19 @@
 import { Moment } from 'moment';
 
 interface ITemp {
-    min: Number;
-    max: Number;
+    min: number;
+    max: number;
 }
 
 interface IWind {
-    speed: Number;
-    degree: Number;
+    speed: number;
+    degree: number;
 }
 
 export interface IEntry {
     date: Moment;
     temp: ITemp;
-    humidity: Number;
+    humidity: number;
     wind: IWind;
     icon: string;
 }

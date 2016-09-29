@@ -8,4 +8,8 @@ import { IEntry } from '../../shared/models';
 })
 class TabSelector {
   @Input() entries: Array<Array<IEntry>>;
+
+  onTabSelected(index) {
+    console.log(index);
+  }
 }
