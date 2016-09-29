@@ -1,8 +1,8 @@
-<div [ngClass]="'c-tab-header', 'o-flex', 'o-column', 'o-flex-1', 'c-tab-header--active': isSelected" (click)="selectTab()">
-  <div>{{dayEntries[0].date.format('ddd')}</div>
+<div [ngClass]="{'c-tab-header': true, 'o-flex': true, 'o-column': true, 'o-flex-1': true, 'c-tab-header--active': isSelected}" (click)="selectTab()">
+  <div>{{dayEntries[0]?.date.format('ddd')}}</div>
   <div className="o-flex o-row">
     <span [ngClass]="'o-flex-1'">
-        <img [src]="iconSrc" alt="Weather Icon" />
+        <img [src]="getIcon()" alt="Weather Icon" />
     </span>
     <div className="o-flex-1">
       <div>{{findMinTemp()}} °C</div>

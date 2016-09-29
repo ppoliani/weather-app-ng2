@@ -1,7 +1,9 @@
 import * as moment from 'moment';
 import { IWeather, IEntry } from '../models';
+import { Injectable } from '@angular/core';
 
-export default class TransformationService {
+@Injectable()
+export class TransformationService {
   /**
    * Returns a tuple IEntry*Number including the index of the previous entry
    */

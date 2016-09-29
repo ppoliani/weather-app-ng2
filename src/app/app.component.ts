@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IWeather } from './shared/models';
-import WeatherApiService from './shared/services/weather-api.service';
-import TransformationService from './shared/services/transformation.service';
+import { WeatherApiService } from './shared/services/weather-api.service';
+import { TransformationService } from './shared/services/transformation.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   weather: IWeather;
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.weatherApiService.fetchForecast()
-      .map(rawData => {
+      .subscribe(rawData => {
         this.weather = this.transformationService.transformData(rawData);
       })
   }

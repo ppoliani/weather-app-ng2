@@ -1,7 +1,9 @@
 import 'rxjs/add/operator/map';
+import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-export default class WeatherApiService {
+@Injectable()
+export class WeatherApiService {
   apiUrl: string;
 
   constructor(private http: Http) {

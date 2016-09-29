@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { WeatherApiService } from './shared/services/weather-api.service';
+import { TransformationService } from './shared/services/transformation.service';
 import { AppComponent } from './app.component';
-import { TabHeaderComponent } from './tab-header/tab-header.component';
+import { TabSelectorComponent } from './components/tab-selector/tab-selector.component';
+import { TabHeaderComponent } from './components/tab-header/tab-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TabSelectorComponent,
     TabHeaderComponent
   ],
   imports: [
@@ -16,7 +20,10 @@ import { TabHeaderComponent } from './tab-header/tab-header.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    WeatherApiService,
+    TransformationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

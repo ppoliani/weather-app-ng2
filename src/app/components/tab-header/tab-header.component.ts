@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IEntry } from '../../shared/models';
 
 @Component({
-  selector: 'app-tab-header',
+  selector: 'tab-header',
   templateUrl: './tab-header.component.html',
   styleUrls: ['./tab-header.component.scss']
 })
@@ -13,15 +13,17 @@ export class TabHeaderComponent {
   @Output() onTabSelected = new EventEmitter<number>();
 
   iconUri: string;
-  iconSrc: string;
 
   constructor() {
     this.iconUri = 'http://openweathermap.org/img/w/';
-    this.iconSrc = `${this.iconUri}/${this.dayEntries[0].icon}.png`;
   }
 
   selectTab() {
     this.onTabSelected.emit(this.index);
+  }
+
+  getIcon() {
+    return this.dayEntries ? `${this.iconUri}/${this.dayEntries[0].icon}.png`: '';
   }
 
   findMinTemp() {

@@ -6,10 +6,16 @@ import { IEntry } from '../../shared/models';
   templateUrl: './tab-selector.component.html',
   styleUrls: ['./tab-selector.component.scss']
 })
-class TabSelector {
+export class TabSelectorComponent {
   @Input() entries: Array<Array<IEntry>>;
 
+  selectedIndex: number;
+
   onTabSelected(index) {
-    console.log(index);
+    this.selectedIndex = index;
+  }
+
+  isSelected(index) {
+    return this.selectedIndex === index;
   }
 }
