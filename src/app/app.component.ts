@@ -9,7 +9,7 @@ import TransformationService from './shared/services/transformation.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  entries: IWeather;
+  weather: IWeather;
 
   constructor(
     private weatherApiService: WeatherApiService,
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.weatherApiService.fetchForecast()
       .map(rawData => {
-        this.entries = this.transformationService.transformData(rawData);
+        this.weather = this.transformationService.transformData(rawData);
       })
   }
 }

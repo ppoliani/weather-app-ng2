@@ -1,0 +1,42 @@
+$color: #14805e;
+
+.c-tab-selector__header {
+  height: 120px;
+  background: $color;
+  color: #fff;
+  font-weight: bold;
+}
+
+.c-tab-selector__body {
+  height: 250px;
+  position: relative;
+  background: #fff;
+}
+
+.c-tab-header {
+  padding: 1rem;
+  cursor: pointer;
+
+  &--active {
+    background: #fff;
+    color: $color;
+  }
+}
+
+.c-tab-content {
+  display: none;
+  width: 100%;
+  position: absolute;
+
+  &--active {
+    display: flex;
+  }
+
+  &__item {
+    padding: 1rem;
+
+    &:not(:last-child) {
+      border-right: .5px $color dotted;
+    }
+  }
+}

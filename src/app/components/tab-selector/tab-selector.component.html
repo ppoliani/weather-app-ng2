@@ -1,0 +1,7 @@
+<div class="c-tab-selector o-flex o-column">
+  <div class="c-tab-selector__header o-flex o-row" *ngFor="let e of entries"; i=index>
+    <tab-header index="i" [day-entries]="e" isSelected="TabSelector.isSelected(i)"></tab-header>
+  </div>
+  <div class="c-tab-selector__body" *ngFor="let e of entries"; i=index>
+     <tab-content [day-entries]="e" isSelected="TabSelector.isSelected(i)"></tab-content>
+</div>
