@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IWeather } from './shared/models';
-import { WeatherApiService } from './shared/services/weather-api.service';
-import { TransformationService } from './shared/services/transformation.service';
+import { IWeather } from './data/models';
+import { WeatherApiService } from './services/weather-api.service';
+import { TransformationService } from './services/transformation.service';
 
 @Component({
   selector: 'app-root',

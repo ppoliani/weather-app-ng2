@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IEntry } from '../../shared/models';
+import { IEntry } from '../../data/models';
 
 @Component({
   selector: 'tab-header',
