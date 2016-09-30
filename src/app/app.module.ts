@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
-import reduxLogger from 'redux-logger;
 import { rootReducer } from './reducers';
+const createLogger = require('redux-logger');
 
 import { IAppState, initialState } from './data/models';
 import { WeatherApiService } from './services/weather-api.service';
@@ -35,6 +35,6 @@ import { TabContentComponent } from './components/tab-content/tab-content.compon
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, initialState, reduxLogger);
+    ngRedux.configureStore(rootReducer, initialState, [createLogger()]);
   }
 }

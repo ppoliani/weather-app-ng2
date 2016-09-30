@@ -31,7 +31,7 @@ export interface IEntry {
     icon: string;
 }
 
-const createEntry = makeTypedFactory<IEntry, IEntryRecord>({
+export const createEntry = makeTypedFactory<IEntry, IEntryRecord>({
   date: null,
   temp: createTemperature(),
   humidity: 0,
@@ -50,13 +50,22 @@ export const createWeather = makeTypedFactory<IWeather, IWeatherRecord>({
   dataEntries: List([])
 });
 
-interface IAppStateRecord extends TypedRecord<IAppStateRecord>, IAppState {}
+interface ITabSelectorDataRecord extends TypedRecord<ITabSelectorDataRecord>, ITabSelectorData {}
+interface ITabSelectorData {
+  selectedTab: number;
+}
+
+export const creatTabSelectorData = makeTypedFactory<ITabSelectorData, ITabSelectorDataRecord>({
+  selectedTab: 0
+});
+
+export interface IAppStateRecord extends TypedRecord<IAppStateRecord>, IAppState {}
 export interface IAppState {
   data: IWeatherRecord;
-  selectedTab: number;
+  selectedTab: ITabSelectorDataRecord;
 }
 
 export const initialState: IAppStateRecord = recordify<IAppState, IAppStateRecord>({
   data: createWeather(),
-  selectedTab: 0
+  selectedTab: creatTabSelectorData()
 });
