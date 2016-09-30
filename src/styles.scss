@@ -1,3 +1,5 @@
+$color: #14805e;
+
 body, html {
   margin: 0;
   height: 100%;
@@ -36,6 +38,8 @@ body, html {
  * 1. 50px header + 10px margin
  */
 .main-content {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 5% 20%;
   background: url('../assets/images/bg.jpg') no-repeat;

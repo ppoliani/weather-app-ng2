@@ -1,4 +1,4 @@
-<div [ngClass]="{'c-tab-header': true, 'o-flex': true, 'o-column': true, 'o-flex-1': true, 'c-tab-header--active': isSelected}" (click)="selectTab()">
+<div [ngClass]="{'c-tab-header': true, 'o-flex': true, 'o-column': true, 'c-tab-header--active': isSelected}" (click)="selectTab()">
   <div>{{dayEntries[0]?.date.format('ddd')}}</div>
   <div className="o-flex o-row">
     <span [ngClass]="'o-flex-1'">

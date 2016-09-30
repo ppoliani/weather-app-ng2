@@ -12,7 +12,7 @@ export class TabHeaderComponent {
   @Input() isSelected: boolean;
   @Output() onTabSelected = new EventEmitter<number>();
 
-  iconUri: string;
+  private iconUri: string;
 
   constructor() {
     this.iconUri = 'http://openweathermap.org/img/w/';

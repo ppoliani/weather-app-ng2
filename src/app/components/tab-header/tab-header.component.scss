@@ -1,0 +1,12 @@
+$color: #14805e;
+
+.c-tab-header {
+  padding: .25rem;
+  height: 100%;
+  cursor: pointer;
+
+  &--active {
+    background: #fff;
+    color: $color;
+  }
+}

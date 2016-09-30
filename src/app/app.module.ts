@@ -8,12 +8,14 @@ import { TransformationService } from './shared/services/transformation.service'
 import { AppComponent } from './app.component';
 import { TabSelectorComponent } from './components/tab-selector/tab-selector.component';
 import { TabHeaderComponent } from './components/tab-header/tab-header.component';
+import { TabContentComponent } from './components/tab-content/tab-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabSelectorComponent,
-    TabHeaderComponent
+    TabHeaderComponent,
+    TabContentComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import { IEntry } from '../../shared/models';
 export class TabSelectorComponent {
   @Input() entries: Array<Array<IEntry>>;
 
-  selectedIndex: number;
+  selectedIndex = 0;
 
   onTabSelected(index) {
     this.selectedIndex = index;
