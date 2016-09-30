@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { IAppStateRecord } from '../data/models';
-import { weatherReducer } from '../reducers/weatherReducer';
-import { tabSelectorReducer } from '../reducers/tabSelectorReducer';
+import { weatherReducer } from '../reducers/weather.reducer';
+import { tabSelectorReducer } from '../reducers/tab-selector.reducer';
 
 
 export const rootReducer = combineReducers<IAppStateRecord>({
-  weather: weatherReducer
+  weather: weatherReducer,
+  tabSelector: tabSelectorReducer
 });

@@ -39,7 +39,7 @@ export const createEntry = makeTypedFactory<IEntry, IEntryRecord>({
   icon: ''
 });
 
-interface IWeatherRecord extends TypedRecord<IWeatherRecord>, IWeather {};
+export interface IWeatherRecord extends TypedRecord<IWeatherRecord>, IWeather {};
 export interface IWeather {
     city: string;
     dataEntries: List<List<IEntry>>;
@@ -50,19 +50,19 @@ export const createWeather = makeTypedFactory<IWeather, IWeatherRecord>({
   dataEntries: List([])
 });
 
-interface ITabSelectorDataRecord extends TypedRecord<ITabSelectorDataRecord>, ITabSelectorData {}
-interface ITabSelectorData {
+interface ITabSelectorRecord extends TypedRecord<ITabSelectorRecord>, ITabSelector {}
+interface ITabSelector {
   selectedTab: number;
 }
 
-export const creatTabSelectorData = makeTypedFactory<ITabSelectorData, ITabSelectorDataRecord>({
+export const creatTabSelectorData = makeTypedFactory<ITabSelector, ITabSelectorRecord>({
   selectedTab: 0
 });
 
 export interface IAppStateRecord extends TypedRecord<IAppStateRecord>, IAppState {}
 export interface IAppState {
   data: IWeatherRecord;
-  selectedTab: ITabSelectorDataRecord;
+  selectedTab: ITabSelectorRecord;
 }
 
 export const initialState: IAppStateRecord = recordify<IAppState, IAppStateRecord>({
