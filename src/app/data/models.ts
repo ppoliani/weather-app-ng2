@@ -50,7 +50,7 @@ export const createWeather = makeTypedFactory<IWeather, IWeatherRecord>({
   dataEntries: List([])
 });
 
-interface ITabSelectorRecord extends TypedRecord<ITabSelectorRecord>, ITabSelector {}
+export interface ITabSelectorRecord extends TypedRecord<ITabSelectorRecord>, ITabSelector {}
 interface ITabSelector {
   selectedTab: number;
 }

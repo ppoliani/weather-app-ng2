@@ -1,8 +1,21 @@
-import { ITabSelectorRecord } from '../data/models';
+import { NgRedux } from 'ng2-redux';
+import { ITabSelectorRecord, IAppStateRecord } from '../data/models';
 
 interface SelectTab {
-  type: 'selectTab';
+  type: ActionsEnum.SelectTab;
   payload: number;
 }
 
+export enum ActionsEnum {
+  SelectTab
+}
+
 export type TabSelectorAction = SelectTab;
+
+export class TabSelectorActions {
+  constructor(private ngRedux: NgRedux<IAppStateRecord>) {}
+
+  selectTab(index) {
+    this.ngRedux.dispatch({ type: ActionsEnum.SelectTab, payload: index } as TabSelectorAction);
+  }
+}

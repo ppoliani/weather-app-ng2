@@ -1,20 +1,56 @@
-import { IWeatherRecord } from '../data/models';
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { IWeatherRecord, IAppStateRecord } from '../data/models';
 
 interface FetchWeatherForecast {
-  type: 'fetchWeatherForecast';
+  type: ActionsEnum.FetchWeatherForecast;
   payload: string; //maybe the query parameter
 }
 
 interface FetchWeatherForecastSuccess {
-  type: 'fetchWeatherForecastSuccess';
+  type: ActionsEnum.FetchWeatherForecastSuccess;
   payload: IWeatherRecord;
 }
 
 interface FetchWeatherForecastError {
-  type: 'fetchWeatherForecastError';
+  type: ActionsEnum.FetchWeatherForecastError;
   payload: string;
 }
 
-export type WeatherActions = FetchWeatherForecast
+export enum ActionsEnum {
+  FetchWeatherForecast,
+  FetchWeatherForecastSuccess,
+  FetchWeatherForecastError
+}
+
+export type WeatherAction =
+  FetchWeatherForecast
   | FetchWeatherForecastSuccess
   | FetchWeatherForecastError;
+
+
+@Injectable()
+export class WeatherActions {
+  constructor(private ngRedux: NgRedux<IAppStateRecord>) {}
+
+  fetchWeatherForecast() {
+    this.ngRedux.dispatch({
+      type: ActionsEnum.FetchWeatherForecast,
+      payload: '',
+    } as WeatherAction);
+  }
+
+  fetchWeatherSucces(payload: IWeatherRecord) {
+    this.ngRedux.dispatch({
+      type: ActionsEnum.FetchWeatherForecastSuccess,
+      payload
+    } as WeatherAction);
+  }
+
+  fetchWeatherError(payload) {
+    this.ngRedux.dispatch({
+      type: ActionsEnum.FetchWeatherForecastError,
+      payload
+    } as WeatherAction);
+  }
+}
