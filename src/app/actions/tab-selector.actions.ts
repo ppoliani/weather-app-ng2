@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { ITabSelectorRecord, IAppStateRecord } from '../data/models';
 
@@ -12,6 +13,7 @@ export enum ActionsEnum {
 
 export type TabSelectorAction = SelectTab;
 
+@Injectable()
 export class TabSelectorActions {
   constructor(private ngRedux: NgRedux<IAppStateRecord>) {}
 

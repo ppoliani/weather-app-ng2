@@ -35,6 +35,7 @@ import { WeatherEpics } from './epics/weather.epics';
   providers: [
     TabSelectorActions,
     WeatherActions,
+    Epics,
     WeatherEpics,
     TransformationService
   ],

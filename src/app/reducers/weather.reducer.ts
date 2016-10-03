@@ -1,12 +1,10 @@
 import { createWeather } from '../data/models';
-import { WeatherAction, ActionsEnum } from '../actions/weather.actions';
+import { WeatherAction, FETCH, FETCH_SUCCESS, FETCH_ERROR } from '../actions/weather.actions';
 
 export function weatherReducer(state = createWeather(), action: WeatherAction) {
   switch(action.type) {
-    case ActionsEnum.FetchWeatherForecast: return state;
-    case ActionsEnum.FetchWeatherForecastSuccess: return state;
-    case ActionsEnum.FetchWeatherForecastError: return state;
-    default: const x: never = action;
+    case FETCH_SUCCESS: return action.payload;
+    case FETCH_ERROR: return state;
   }
   return state;
 }

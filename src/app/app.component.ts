@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IWeather } from './data/models';
-import { WeatherApiService } from './services/weather-api.service';
-import { TransformationService } from './services/transformation.service';
+import { select } from 'ng2-redux';
+import { IWeatherRecord } from './data/models';
+import { Observable } from 'rxjs';
+import { WeatherActions } from './actions/weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,13 @@ import { TransformationService } from './services/transformation.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  weather: IWeather;
+  @select(['weather', 'dataEntries']) dataEntries: Observable<IWeatherRecord>;
 
   constructor(
-    private weatherApiService: WeatherApiService,
-    private transformationService: TransformationService
+    private weatherActions: WeatherActions
   ) {}
 
   ngOnInit() {
-    this.weatherApiService.fetchForecast()
-      .subscribe(rawData => {
-        this.weather = this.transformationService.transformData(rawData);
-      })
+    this.weatherActions.fetchWeatherForecast();
   }
 }

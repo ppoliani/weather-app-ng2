@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IEntry } from '../../data/models';
+import { List } from 'immutable';
+import { IEntryRecord } from '../../data/models';
 
 @Component({
   selector: 'tab-header',
@@ -8,9 +9,8 @@ import { IEntry } from '../../data/models';
 })
 export class TabHeaderComponent {
   @Input() index: number;
-  @Input() dayEntries: Array<IEntry>;
+  @Input() dayEntries: List<IEntryRecord>;
   @Input() isSelected: boolean;
-  @Output() onTabSelected = new EventEmitter<number>();
 
   private iconUri: string;
 
@@ -19,7 +19,7 @@ export class TabHeaderComponent {
   }
 
   selectTab() {
-    this.onTabSelected.emit(this.index);
+
   }
 
   getIcon() {
@@ -27,10 +27,10 @@ export class TabHeaderComponent {
   }
 
   findMinTemp() {
-    return Math.min(...(this.dayEntries.map(e => e.temp.max)));
+    return Math.min(...this.dayEntries.map(e => e.getIn['temp', 'maxValue']).toArray());
   }
 
   findMaxTemp() {
-    return Math.max(...(this.dayEntries.map(e => e.temp.max)));
+    return Math.max(...this.dayEntries.map(e => e.getIn['temp', 'maxValue']).toArray());
   }
 }

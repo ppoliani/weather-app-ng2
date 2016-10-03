@@ -1,4 +1,4 @@
 <section class="main-content">
   <h1>Weather London</h1>
-  <tab-selector [entries]="weather?.entries"></tab-selector>
+  <tab-selector [entries]="dataEntries | async"></tab-selector>
 </section>

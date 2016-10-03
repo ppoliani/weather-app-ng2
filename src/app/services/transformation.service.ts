@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { Injectable } from '@angular/core';
 import { List } from 'immutable';
-import { createWeather, createEntry, IEntry, IWeather } from '../data/models';
+import { createWeather, createEntry, createTemperature, createWind, IEntry, IWeather } from '../data/models';
 
 @Injectable()
 export class TransformationService {
@@ -48,16 +48,16 @@ export class TransformationService {
       list.map(
         item => createEntry({
           date: moment(item.dt_txt),
-          temp: {
+          temp: createTemperature({
             minValue: Math.round(item.main.temp_min),
             maxValue: Math.round(item.main.temp_max)
-          },
+          }),
           humidity: item.main.humidity,
           icon: item.weather[0].icon,
-          wind: {
+          wind: createWind({
             speed: item.wind.speed,
             degree: item.wind.deg
-          }
+          })
         })
       )
     );

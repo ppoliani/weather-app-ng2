@@ -6,5 +6,5 @@ import { tabSelectorReducer } from '../reducers/tab-selector.reducer';
 
 export const rootReducer = combineReducers<IAppStateRecord>({
   weather: weatherReducer,
-  tabSelector: tabSelectorReducer
+  selectedTab: tabSelectorReducer
 });

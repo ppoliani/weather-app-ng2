@@ -7,7 +7,7 @@ interface ITemp {
     minValue: number;
     maxValue: number;
 }
-const createTemperature = makeTypedFactory<ITemp, ITempRecord>({
+export const createTemperature = makeTypedFactory<ITemp, ITempRecord>({
   minValue: 0,
   maxValue: 0
 });
@@ -17,17 +17,17 @@ interface IWind {
     speed: number;
     degree: number;
 }
-const createWind = makeTypedFactory<IWind, IWindRecord>({
+export const createWind = makeTypedFactory<IWind, IWindRecord>({
   speed: 0,
   degree: 0
 });
 
-interface IEntryRecord extends TypedRecord<IEntryRecord>, IEntry {};
+export interface IEntryRecord extends TypedRecord<IEntryRecord>, IEntry {};
 export interface IEntry {
     date: Moment;
-    temp: ITemp;
+    temp: ITempRecord;
     humidity: number;
-    wind: IWind;
+    wind: IWindRecord;
     icon: string;
 }
 
@@ -61,11 +61,11 @@ export const creatTabSelectorData = makeTypedFactory<ITabSelector, ITabSelectorR
 
 export interface IAppStateRecord extends TypedRecord<IAppStateRecord>, IAppState {}
 export interface IAppState {
-  data: IWeatherRecord;
+  weather: IWeatherRecord;
   selectedTab: ITabSelectorRecord;
 }
 
-export const initialState: IAppStateRecord = recordify<IAppState, IAppStateRecord>({
-  data: createWeather(),
+export const initialState = {
+  weather: createWeather(),
   selectedTab: creatTabSelectorData()
-});
+};

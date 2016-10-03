@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
-import { ActionsEnum, WeatherActions } from '../actions/weather.actions';
+import { WeatherActions, FETCH } from '../actions/weather.actions';
 import { TransformationService } from '../services/transformation.service';
 import 'rxjs/add/operator/catch';
 
@@ -17,10 +17,10 @@ export class WeatherEpics {
   ) {}
 
   fetchForecast = (actions$: ActionsObservable<any>) =>
-    actions$.ofType(ActionsEnum.FetchWeatherForecast)
+    actions$.ofType(FETCH)
       .switchMap(() =>
         this.http.get(`${this.apiUrl}`)
-          .map(r => this.weatherActions.fetchWeatherSucces(this.transformationService.transformData(r.json())))
+          .map(r => this.weatherActions.fetchWeatherSuccess(this.transformationService.transformData(r.json())))
           .catch(error => Observable.of(this.weatherActions.fetchWeatherError(error.message)))
       );
 
