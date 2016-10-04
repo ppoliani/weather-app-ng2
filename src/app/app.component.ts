@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { select, NgRedux } from 'ng2-redux';
 import { List } from 'immutable';
 import { IWeatherRecord, IAppStateRecord } from './data/models';
@@ -8,10 +8,11 @@ import { WeatherActions, WeatherAction } from './actions/weather.actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  @select(['weather', 'dataEntries']) dataEntries: Observable<List<IWeatherRecord>>;
+  @select(['weather', 'dataEntries']) dataEntries$: Observable<List<IWeatherRecord>>;
 
   constructor(
     private ngRedux: NgRedux<IAppStateRecord>,

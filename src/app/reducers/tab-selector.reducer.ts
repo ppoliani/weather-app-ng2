@@ -1,9 +1,8 @@
-import { creatTabSelectorData} from '../data/models';
-import { TabSelectorAction, ActionsEnum } from '../actions/tab-selector.actions';
+import { TabSelectorAction, SELECT_TAB } from '../actions/tab-selector.actions';
 
-export function tabSelectorReducer(state = creatTabSelectorData(), action: TabSelectorAction) {
+export function tabSelectorReducer(state = 0, action: TabSelectorAction) {
   switch(action.type) {
-    case ActionsEnum.SelectTab: return state.set('selectedTab', action.payload);
+    case SELECT_TAB: return action.payload;
   }
 
   return state;

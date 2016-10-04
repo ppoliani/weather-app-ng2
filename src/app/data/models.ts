@@ -50,22 +50,13 @@ export const createWeather = makeTypedFactory<IWeather, IWeatherRecord>({
   dataEntries: List([])
 });
 
-export interface ITabSelectorRecord extends TypedRecord<ITabSelectorRecord>, ITabSelector {}
-interface ITabSelector {
-  selectedTab: number;
-}
-
-export const creatTabSelectorData = makeTypedFactory<ITabSelector, ITabSelectorRecord>({
-  selectedTab: 0
-});
-
 export interface IAppStateRecord extends TypedRecord<IAppStateRecord>, IAppState {}
 export interface IAppState {
   weather: IWeatherRecord;
-  selectedTab: ITabSelectorRecord;
+  selectedTab: number;
 }
 
 export const initialState = {
   weather: createWeather(),
-  selectedTab: creatTabSelectorData()
+  selectedTab: 0
 };

@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { Injectable } from '@angular/core';
 import { List } from 'immutable';
-import { createWeather, createEntry, createTemperature, createWind, IEntry, IWeather } from '../data/models';
+import { createWeather, createEntry, createTemperature, createWind, IEntryRecord, IWeather } from '../data/models';
 
 @Injectable()
 export class TransformationService {
@@ -12,13 +12,13 @@ export class TransformationService {
 
   private isSameDay = (dayA, dayB) => dayA.isSame(dayB, 'day');
 
-  private sort = (entries: List<IEntry>) => entries.sort((a, b) => a.date.diff(b.date)).toList();
+  private sort = (entries: List<IEntryRecord>) => entries.sort((a, b) => a.date.diff(b.date)).toList();
 
   /**
    * Get the individual entries and group them into the day they belong
    */
-  private groupByDays = (entries: List<IEntry>) =>
-    List<List<IEntry>>(
+  private groupByDays = (entries: List<IEntryRecord>) =>
+    List<List<IEntryRecord>>(
       entries.reduce(
         (acc, entry) => {
           const prevEntry = this.getPrev(acc);
@@ -44,7 +44,7 @@ export class TransformationService {
     );
 
   private transformList = ({list}) =>
-    List<IEntry>(
+    List<IEntryRecord>(
       list.map(
         item => createEntry({
           date: moment(item.dt_txt),

@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
-import { ITabSelectorRecord, IAppStateRecord } from '../data/models';
+import { IAppStateRecord } from '../data/models';
+
+type ActionType = 'TAB::SELECT';
+
+export const SELECT_TAB: ActionType = 'TAB::SELECT';
 
 interface SelectTab {
-  type: ActionsEnum.SelectTab;
+  type: ActionType;
   payload: number;
-}
-
-export enum ActionsEnum {
-  SelectTab
 }
 
 export type TabSelectorAction = SelectTab;
 
 @Injectable()
 export class TabSelectorActions {
-  constructor(private ngRedux: NgRedux<IAppStateRecord>) {}
+  constructor() {}
 
-  selectTab(index) {
-    this.ngRedux.dispatch({ type: ActionsEnum.SelectTab, payload: index } as TabSelectorAction);
+  selectTab(index): TabSelectorAction {
+    return { type: SELECT_TAB, payload: index };
   }
 }

@@ -12,6 +12,8 @@ export class TabHeaderComponent {
   @Input() dayEntries: List<IEntryRecord>;
   @Input() isSelected: boolean;
 
+  @Output() onTabSelected = new EventEmitter();
+
   private iconUri: string;
 
   constructor() {
@@ -19,7 +21,7 @@ export class TabHeaderComponent {
   }
 
   selectTab() {
-
+    this.onTabSelected.emit(this.index);
   }
 
   getIcon() {
