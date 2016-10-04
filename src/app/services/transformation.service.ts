@@ -39,7 +39,7 @@ export class TransformationService {
 
           return acc;
         },
-        List()
+        []
       )
     );
 

@@ -34,26 +34,26 @@ export type WeatherAction =
 
 @Injectable()
 export class WeatherActions {
-  constructor(private ngRedux: NgRedux<IAppStateRecord>) {}
+  constructor() {}
 
-  fetchWeatherForecast() {
-    this.ngRedux.dispatch<WeatherAction>({
+  fetchWeatherForecast(): WeatherAction {
+    return {
       type: FETCH,
       payload: '',
-    });
+    };
   }
 
-  fetchWeatherSuccess(payload: IWeatherRecord) {
+  fetchWeatherSuccess(payload: IWeatherRecord): WeatherAction {
     return {
       type: FETCH_SUCCESS,
       payload
     };
   }
 
-  fetchWeatherError(payload) {
-    this.ngRedux.dispatch<WeatherAction>({
+  fetchWeatherError(payload): WeatherAction {
+    return {
       type: FETCH_ERROR,
       payload
-    });
+    };
   }
 }

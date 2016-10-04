@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { select } from 'ng2-redux';
-import { IWeatherRecord } from './data/models';
+import { select, NgRedux } from 'ng2-redux';
+import { IWeatherRecord, IAppStateRecord } from './data/models';
 import { Observable } from 'rxjs';
-import { WeatherActions } from './actions/weather.actions';
+import { WeatherActions, WeatherAction } from './actions/weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +13,11 @@ export class AppComponent implements OnInit {
   @select(['weather', 'dataEntries']) dataEntries: Observable<IWeatherRecord>;
 
   constructor(
+    private ngRedux: NgRedux<IAppStateRecord>,
     private weatherActions: WeatherActions
   ) {}
 
   ngOnInit() {
-    this.weatherActions.fetchWeatherForecast();
+    this.ngRedux.dispatch<WeatherAction>(this.weatherActions.fetchWeatherForecast());
   }
 }
