@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgReduxModule, NgRedux } from 'ng2-redux';
+import { NgReduxModule, NgRedux, DevToolsExtension } from 'ng2-redux';
 import { rootReducer } from './reducers';
 import { createEpicMiddleware } from 'redux-observable';
+import { environment } from '../environments/environment';
 const createLogger = require('redux-logger');
 
 import { IAppState, initialState } from './data/models';
-import { WeatherApiService } from './services/weather-api.service';
 import { TransformationService } from './services/transformation.service';
 import { AppComponent } from './app.component';
 import { TabSelectorComponent } from './components/tab-selector/tab-selector.component';
@@ -43,9 +43,21 @@ import { WeatherEpics } from './epics/weather.epics';
 })
 export class AppModule {
   constructor(
-    ngRedux: NgRedux<IAppState>,
-    epics: Epics
+    private ngRedux: NgRedux<IAppState>,
+    private devTools: DevToolsExtension,
+    private epics: Epics
   ) {
-    ngRedux.configureStore(rootReducer, initialState, [createLogger(), createEpicMiddleware(epics.load)]);
+    let enhancers = [];
+
+    if(!environment.production && devTools.isEnabled()) {
+      enhancers = [this.devTools.enhancer()]
+    }
+
+    ngRedux.configureStore(
+      rootReducer,
+      initialState,
+      [createLogger(), createEpicMiddleware(epics.load)],
+      enhancers
+    );
   }
 }

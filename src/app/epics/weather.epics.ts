@@ -23,5 +23,4 @@ export class WeatherEpics {
           .map(r => this.weatherActions.fetchWeatherSuccess(this.transformationService.transformData(r.json())))
           .catch(error => Observable.of(this.weatherActions.fetchWeatherError(error.message)))
       );
-
 }
