@@ -2,6 +2,6 @@
   <div *ngFor="let dayEntry of dayEntries" class="o-flex o-column o-flex-1 o-flex-center c-tab-content__item" [style.maxWidth]="maxWidth">
     <span>{{dayEntry.date.format('HH:00')}}</span>
     <img width="50px" height="50px" src="{{this.iconUri}}/{{dayEntry.icon}}.png" alt="Weather Icon" />
-    <span>{{dayEntry.temp.max}} °C</span>
+    <span>{{dayEntry.temp.maxValue}} °C</span>
   </div>
 </div>

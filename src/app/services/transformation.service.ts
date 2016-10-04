@@ -8,7 +8,7 @@ export class TransformationService {
   /**
    * Returns a tuple IEntry*Number including the index of the previous entry
    */
-  private getPrev = arr => arr.length >= 1 ? [arr[arr.length - 1], arr.length - 1] : undefined;
+  private getPrev = arr => arr.size >= 1 ? List(List([arr.get(arr.size - 1), arr.size - 1])) : undefined;
 
   private isSameDay = (dayA, dayB) => dayA.isSame(dayB, 'day');
 
@@ -26,20 +26,20 @@ export class TransformationService {
           // similar to  fp pattern matching
           switch (prevEntry) {
             case undefined:
-              acc.push([entry]);
-              break;
+              return acc.push(List([entry]));
             default:
-              if (this.isSameDay(entry.date, prevEntry[0][0].date)) {
-                acc[prevEntry[1]].push(entry);
+              if (this.isSameDay(entry.date, prevEntry.getIn([0, 0]).date)) {
+                return acc.updateIn(
+                  [prevEntry.get(1)],
+                  (e) => e.push(entry)
+                )
               }
               else {
-                acc.push([entry]);
+                return acc.push(List([entry]));
               }
           }
-
-          return acc;
         },
-        []
+        List(List([]))
       )
     );
 

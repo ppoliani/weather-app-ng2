@@ -23,14 +23,14 @@ export class TabHeaderComponent {
   }
 
   getIcon() {
-    return this.dayEntries ? `${this.iconUri}/${this.dayEntries[0].icon}.png`: '';
+    return this.dayEntries ? `${this.iconUri}/${this.dayEntries.get(0).icon}.png`: '';
   }
 
   findMinTemp() {
-    return Math.min(...this.dayEntries.map(e => e.getIn['temp', 'maxValue']).toArray());
+    return Math.min(...this.dayEntries.map(e => e.getIn(['temp', 'maxValue'])).toArray());
   }
 
   findMaxTemp() {
-    return Math.max(...this.dayEntries.map(e => e.getIn['temp', 'maxValue']).toArray());
+    return Math.max(...this.dayEntries.map(e => e.getIn(['temp', 'maxValue'])).toArray());
   }
 }

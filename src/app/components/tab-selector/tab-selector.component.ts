@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { List } from 'immutable';
 import { IEntry } from '../../data/models';
 
 @Component({
@@ -7,7 +8,7 @@ import { IEntry } from '../../data/models';
   styleUrls: ['./tab-selector.component.scss']
 })
 export class TabSelectorComponent {
-  @Input() entries: Array<Array<IEntry>>;
+  @Input() entries: List<List<IEntry>>;
 
   selectedIndex = 0;
 

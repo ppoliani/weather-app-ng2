@@ -1,6 +1,12 @@
 <div class="c-tab-selector o-flex o-column ">
   <div class="c-tab-selector__header o-flex o-flex-1 o-row">
-    <tab-header class="o-flex-1"  [index]="i" [dayEntries]="e" [isSelected]="isSelected(i)" (onTabSelected)="onTabSelected($event)" *ngFor="let e of entries; let i=index"></tab-header>
+    <tab-header *ngFor="let e of entries; let i=index"
+      class="o-flex-1"
+      [index]="i"
+      [dayEntries]="e"
+      [isSelected]="isSelected(i)"
+      (onTabSelected)="onTabSelected($event)">
+    </tab-header>
   </div>
   <div class="c-tab-selector__body">
      <tab-content [dayEntries]="e" [isSelected]="isSelected(i)" *ngFor="let e of entries; let i=index"></tab-content>
